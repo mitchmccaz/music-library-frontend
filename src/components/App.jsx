@@ -3,7 +3,6 @@ import './App.css';
 import SongTable from './SongTable/SongTable';
 import TableHeader from './TableHeader/TableHeader';
 import SongCreateForm from './SongCreateForm/SongCreateForm';
-
 import axios from "axios";
 
 class App extends Component {
@@ -22,7 +21,7 @@ class App extends Component {
     }
 
     getAllSongs = async () => {
-        let response = await axios.get('http://127.0.0.1:8000/music/')
+        let response = await axios.get('http://127.0.0.1:8000/api/music/')
         this.setState({
             songs : response.data
         });
@@ -50,14 +49,14 @@ class App extends Component {
     }
 
     deleteSong = async (songId) => {
-        let response = await axios.delete('http://127.0.0.1:8000/music/' + songId + '/')
+        let response = await axios.delete('http://127.0.0.1:8000/api/music/' + songId + '/')
         this.getAllSongs(); 
         return response.status; 
          
     }
 
     createSong = async (newSong) => {
-        let response = await axios.post('http://127.0.0.1:8000/music/', newSong)
+        let response = await axios.post('http://127.0.0.1:8000/api/music/', newSong)
         this.getAllSongs(); 
         return response.status; 
          
